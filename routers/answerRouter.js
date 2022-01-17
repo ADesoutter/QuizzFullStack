@@ -1,49 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const sequelize = require("../models");
 
-// récupérer tous les catégories
-router.get('/', (req, res) => {
-    sequelize.models.Answer.findAll()
-    .then(myAnswers => {
-        res.send(myAnswers);
-    })
-})
+const answerController = require('../controllers/answer');
+
+router.get('/', answerController.getAllAnswers);
    
-// récupérer une catégorie pour l'id
-router.get('/:id', (req, res) => {
-    const id= req.params.id;
-    sequelize.models.Answer.findByPk(id)
-    .then(myAnswer => {
-        res.send(myAnswer);
-    })
-})
+router.get('/:id', answerController.getAnswer);
 
-// créer un nouveau Quizz en passant par postman
-router.post('/', (req, res ) => {
-    console.log(req.body);
-    sequelize.models.Quizz.create(req.body)
-    .then(quizzCreated => {
-        res.send(quizzCreated);
-    })
-})
+router.post('/', answerController.createAnswer);
 
-// supprimer un Quizz par son id en passant par postman
-router.delete('/:id', (req, res) => {
-    sequelize.models.Quizz.destroy ({
-        where:{id: req.params.id}
-    }).then(() => {
-        res.send({info:"quizz deleted"})
-    })  
-})
+router.patch('/:id', answerController.updateAnswer);
 
-// modifier ou mettre a jour un quizz en passant par postman
-router.patch('/:id', (req, res) => {
-    sequelize.models.Quizz.update(req.body, 
-        {where: {id : req.params.id} })
-    .then(successUpdated => {
-        res.send(successUpdated);
-    })
-})
+router.delete('/:id', answerController.deleteAnswer);
+
 
 module.exports = router;

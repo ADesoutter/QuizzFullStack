@@ -2,8 +2,6 @@ const sequelize = require("./models");
 // const cors = require('cors');
 const express = require('express');
 
-console.log('Checking Database connection...');
-
 const app = express();
 // app.use(cors());
 
