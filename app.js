@@ -26,7 +26,6 @@ const PORT = 4000;
 console.log('Checking Database connection...');
 
 sequelize.authenticate()
-// Si il arrive à s'authentifier à la BDD
 .then(() => {
     console.log("Database connection OK!");
 

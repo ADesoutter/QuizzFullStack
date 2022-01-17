@@ -1,31 +1,39 @@
-const sequelize = require("./models/index.js");
+const sequelize = require("./models");
 const faker = require('faker');
-
 
 console.log('Checking Database connection...');
 
-function generateTasks() {
-    for(let i=1;i<=30;i++) {
-        sequelize.models.Task.create({
-            title: faker.random.words(5)
+
+function generateQuizzs() {
+    for(let i=1; i<=10;i++) {
+        sequelize.models.Quizz.create({
+            title: faker.random.word(1),
         })
     }
 }
 
-function generateTags() {
-    for(let i=1;i<=40;i++) {
-        sequelize.models.Tag.create({
-            name: faker.random.words(3)
+function generateCategories() {
+    for(let i=1; i<=10;i++) {
+        sequelize.models.Category.create({
+            title: faker.animal.type(),
         })
     }
 }
 
-function generateUsers() {
-    for(let i=1;i<=10;i++) {
-        sequelize.models.User.create({
-            firstname: faker.name.firstName(),
-            lastname: faker.name.lastName(),
-            email:faker.internet.email()
+function generateQuestions() {
+    for(let i=1; i<=10;i++) {
+        sequelize.models.Question.create({
+            statement: faker.lorem.sentence(1),
+        })
+    }
+}
+
+function generateAnswers() {
+    for(let i=1; i<=10;i++) {
+        sequelize.models.Answer.create({
+            isCorrect: faker.datatype.boolean(),
+            content: faker.random.word(1),
+            
         })
     }
 }
@@ -37,9 +45,10 @@ sequelize.authenticate()
     console.log("Database connection OK!");
     sequelize.sync({force: true})
     .then(()=> {
-        generateTags();
-        generateTasks();
-        generateUsers();
+        generateQuizzs();
+        generateCategories();
+        generateQuestions();
+        generateAnswers();
     });
 })
 .catch((err) => {
