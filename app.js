@@ -1,28 +1,24 @@
 const sequelize = require("./models");
-const cors = require('cors');
+// const cors = require('cors');
 const express = require('express');
 
 console.log('Checking Database connection...');
 
 const app = express();
-// Cross Origin Resource Sharing -> CORS
-// Permet de faire en sorte d'autoriser un Front-End
-// à utiliser notre API
-// Express autorise le Cross Origin
-app.use(cors());
+// app.use(cors());
 
-// Configurer notre serveur pour utiliser ces routeurs
-const taskRouter = require('./routers/taskRouter');
-app.use('/tasks', taskRouter);
+const quizzRouter = require('./routers/quizzRouter');
+app.use('/quizz', quizzRouter);
 
-const userRouter = require('./routers/userRouter');
-app.use('/users', userRouter);
+const categoryRouter = require('./routers/categoryRouter');
+app.use('/category', categoryRouter);
 
-const tagRouter = require('./routers/tagRouter');
-app.use('/tags', tagRouter);
+const questionRouter = require('./routers/questionRouter');
+app.use('/question', questionRouter);
 
+const answerRouter = require('./routers/answerRouter');
+app.use('/answer', answerRouter);
 
-// Je veux accepter du JSON en envoi d'informations
 app.use(express.json());
 
 const PORT = 4000;
@@ -39,7 +35,8 @@ sequelize.authenticate()
     });
 })
 
-
 .catch((err) => {
     console.log(err);
 })
+
+module.exports = app;

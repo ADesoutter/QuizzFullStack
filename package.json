@@ -3,7 +3,16 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "faker": "^5.5.3",
-    "mysql2": "^2.2.5",
     "sequelize": "^6.6.2"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "quizz",
+  "main": "server.js",
+  "devDependencies": {},
+  "author": "ADesoutter",
+  "license": "ISC"
 }

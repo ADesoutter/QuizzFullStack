@@ -1,24 +1,28 @@
 const {Sequelize} = require('sequelize');
+const dotenv = require('dotenv');
 
-const sequelize = new Sequelize(
-   'mysql://todolist_user:123@localhost/todolist'
-)
+if(!process.env.NODE_ENV)
+{
+    dotenv.config(); 
+}
+const sequelize = new Sequelize(process.env.DATABASE_URL);
 
-const Tag = require('./Tag')(sequelize);
-const Task = require('./Task')(sequelize);
-const User = require('./User')(sequelize);
+const Category = require('./Category')(sequelize);
+const Question = require('./Question')(sequelize);
+const Quizz = require('./Quizz')(sequelize);
+const Answer = require('./Answer')(sequelize);
 
 //-------------- Relations start---------------//
 
-User.hasMany(Task);
-Task.belongsTo(User);
+Category.hasMany(Quizz);
+Quizz.belongsTo(Category);
 
-Tag.belongsToMany(Task, {through: "tag_task"});
-Task.belongsToMany(Tag, {through: "tag_task"});
+Quizz.hasMany(Question);
+Question.belongsTo(Quizz);
+
+Question.hasMany(Answer);
+Answer.belongsTo(Question);
 
 //-------------- Relations end---------------//
-
-
-
 
 module.exports = sequelize;
