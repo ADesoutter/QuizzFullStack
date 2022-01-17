@@ -15,5 +15,9 @@
   "description": "quizz",
   "main": "server.js",
   "author": "ADesoutter",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ADesoutter/QuizzFullStack.git"
+  }
 }
