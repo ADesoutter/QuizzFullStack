@@ -2,16 +2,17 @@ const express = require('express');
 const router = express.Router();
 
 const answerController = require('../controllers/answer');
+const auth = require('../middleware/auth');
 
-router.get('/', answerController.getAllAnswers);
+router.get('/', auth, answerController.getAllAnswers);
    
-router.get('/:id', answerController.getAnswer);
+router.get('/:id', auth, answerController.getAnswer);
 
-router.post('/', answerController.createAnswer);
+router.post('/', auth, answerController.createAnswer);
 
-router.patch('/:id', answerController.updateAnswer);
+router.patch('/:id', auth, answerController.updateAnswer);
 
-router.delete('/:id', answerController.deleteAnswer);
+router.delete('/:id', auth, answerController.deleteAnswer);
 
 
 module.exports = router;
