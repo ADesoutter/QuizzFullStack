@@ -31,9 +31,24 @@ exports.updateAnswer = (req, res) => {
 };
 
 exports.deleteAnswer = (req, res) => {
-    sequelize.models.Answer.destroy ({
-        where:{id: req.params.id}
-    }).then(() => {
-        res.send({ info:"answer deleted" })
-    })  
+    sequelize.models.Answer.findByPk(req.params.id)
+    .then(
+        (answer) => {
+            if(!answer) {
+                return res.status(404).json({
+                    error: new Error('Réponse non trouvé !')
+                });
+            }
+            if(answer.userId !== req.auth.userId) {
+                return res.status(401).json({
+                    error: new Error('Requête non autorisé')
+                });
+            }
+            sequelize.models.Answer.destroy ({
+                where:{id: req.params.id}
+            }).then(() => {
+                res.send({ info:"answer deleted" })
+            })  
+        }
+    )
 }
