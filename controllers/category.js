@@ -16,7 +16,6 @@ exports.getCategory = (req, res) => {
 };
 
 exports.createCategory = (req, res ) => {
-    console.log(req.body);
     sequelize.models.Category.create(req.body)
     .then(categoryCreated => {
         res.send(categoryCreated);

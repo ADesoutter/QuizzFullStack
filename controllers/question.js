@@ -16,7 +16,6 @@ exports.getQuestion = (req, res) => {
 };
 
 exports.createQuestion = (req, res ) => {
-    console.log(req.body);
     sequelize.models.Question.create(req.body)
     .then(questionCreated => {
         res.send(questionCreated);

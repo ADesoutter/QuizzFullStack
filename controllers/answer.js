@@ -16,7 +16,6 @@ exports.getAnswer = (req, res) => {
 };
 
 exports.createAnswer = (req, res ) => {
-    console.log(req.body);
     sequelize.models.Quizz.create(req.body)
     .then(answerCreated => {
         res.send(answerCreated);

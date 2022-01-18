@@ -5,8 +5,8 @@ const express = require('express');
 const app = express();
 // app.use(cors());
 
-const quizzRouter = require('./routers/quizzRouter');
-app.use('/quizz', quizzRouter);
+// const quizzRouter = require('./routers/quizzRouter');
+// app.use('/quizz', quizzRouter);
 
 const categoryRouter = require('./routers/categoryRouter');
 app.use('/category', categoryRouter);
@@ -17,9 +17,10 @@ app.use('/question', questionRouter);
 const answerRouter = require('./routers/answerRouter');
 app.use('/answer', answerRouter);
 
-app.use(express.json());
+const userRouter = require('./routers/userRouter');
+app.use('/auth', userRouter);
 
-const PORT = 4000;
+app.use(express.json());
 
 console.log('Checking Database connection...');
 
