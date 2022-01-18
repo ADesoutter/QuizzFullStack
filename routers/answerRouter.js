@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const answerController = require('../controllers/answer');
 const auth = require('../middleware/auth');
+const answerController = require('../controllers/answer');
 
 router.get('/', auth, answerController.getAllAnswers);
    

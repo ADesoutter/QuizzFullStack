@@ -23,7 +23,7 @@ function generateCategories() {
 function generateQuestions() {
     for(let i=1; i<=10;i++) {
         sequelize.models.Question.create({
-            statement: faker.lorem.sentence(1),
+            statement: faker.lorem.word(6),
         })
     }
 }

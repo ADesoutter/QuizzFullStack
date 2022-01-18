@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-const quizzController = require('../controllers/quizz');
 const auth = require('../middleware/auth');
+const quizzController = require('../controllers/quizz');
+
 
 router.get('/', auth, quizzController.getAllQuizzes);
    

@@ -7,10 +7,11 @@
     "faker": "^5.5.3",
     "jsonwebtoken": "^8.5.1",
     "mariadb": "^2.5.5",
+    "nodemon": "^2.0.15",
     "sequelize": "^6.6.2"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node app.js"
   },
   "name": "backend",
   "version": "1.0.0",
