@@ -1,11 +1,8 @@
 const sequelize = require("./models");
 const faker = require('faker');
 
-console.log('Checking Database connection...');
-
-
 function generateQuizzs() {
-    for(let i=1; i<=10;i++) {
+    for(let i=1; i<=50;i++) {
         sequelize.models.Quizz.create({
             title: faker.random.word(1),
         })
@@ -13,7 +10,7 @@ function generateQuizzs() {
 }
 
 function generateCategories() {
-    for(let i=1; i<=10;i++) {
+    for(let i=1; i<=50;i++) {
         sequelize.models.Category.create({
             title: faker.animal.type(),
         })
@@ -21,15 +18,15 @@ function generateCategories() {
 }
 
 function generateQuestions() {
-    for(let i=1; i<=10;i++) {
+    for(let i=1; i<=50;i++) {
         sequelize.models.Question.create({
-            statement: faker.lorem.word(6),
+            statement: faker.lorem.words(9),
         })
     }
 }
 
 function generateAnswers() {
-    for(let i=1; i<=10;i++) {
+    for(let i=1; i<=50;i++) {
         sequelize.models.Answer.create({
             isCorrect: faker.datatype.boolean(),
             content: faker.random.word(1),
@@ -37,7 +34,6 @@ function generateAnswers() {
         })
     }
 }
-
 
 
 sequelize.authenticate()

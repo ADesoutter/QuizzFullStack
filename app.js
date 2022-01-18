@@ -9,6 +9,7 @@ console.log('Checking Database connection...');
 const app = express();
 // app.use(cors());
 
+
 const answerRouter = require('./routers/answerRouter');
 app.use('/answer', answerRouter);
 
@@ -33,7 +34,13 @@ console.log('Checking Database connection...');
 sequelize.authenticate()
 .then(() => {
     console.log("Database connection OK!");
-    // sequelize.sync({force: true})
+    sequelize.sync({force: true})
+    .then(()=> {
+        generateQuizzs();
+        generateCategories();
+        generateQuestions();
+        generateAnswers();
+    });
     app.listen(PORT, () => {
         console.log(`Web server running at localhost:${PORT}`);
     });
